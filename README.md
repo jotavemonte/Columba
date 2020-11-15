@@ -64,6 +64,6 @@ Open a issue/feature request and more at [the github repository](https://github.
 
 Adds support for running Django Tests a multitude of ways such as by method or class. Supports Django-Nose syntax, test flags, and prefix commands.
 
-### 0.0.1
+### 1.0.0
 
 Initial release of Django Test Runner
