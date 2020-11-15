@@ -58,12 +58,12 @@ This extension contributes the following settings:
 
 - Default shortcuts may or may not work and require setting them manually
 
-Open a issue/feature request and more at [the github repository](https://github.com/Pachwenko/VSCode-Django-Test-Runner/issues)
+Open a issue/feature request and more at [the github repository](https://github.com/jotavemonte/VSCode-Django-Test-Runner/issues)
 
 ## Release Notes
 
 Adds support for running Django Tests a multitude of ways such as by method or class. Supports Django-Nose syntax, test flags, and prefix commands.
 
-### 1.0.0
+### 0.0.1
 
 Initial release of Django Test Runner
