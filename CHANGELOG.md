@@ -4,6 +4,16 @@ All notable changes to the "django-test-runner" extension will be documented in 
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.0]
+
+### Added
+
+- Editable manage.py option
+
+### Removed
+
+- Remove python prefix from command chain
+
 ## [3.0.4] - 2019-07-16
 
 ### Added

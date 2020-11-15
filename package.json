@@ -1,10 +1,10 @@
 {
-    "name": "django-test-runner",
-    "displayName": "Django Test Runner",
-    "description": "Run Django and Django-nose tests in VSCode",
-    "version": "3.0.2",
-    "publisher": "Pachwenko",
-    "repository": "https://github.com/Pachwenko/VSCode-Django-Test-Runner",
+    "name": "columba",
+    "displayName": "Columba",
+    "description": "Django and Django-nose test shorthands in VSCode",
+    "version": "3.1.0",
+    "publisher": "jotavemonte",
+    "repository": "https://github.com/jotavemonte/VSCode-Django-Test-Runner",
     "engines": {
         "vscode": "^1.36.0"
     },
@@ -16,7 +16,9 @@
         "python tests",
         "django",
         "django tests",
-        "tests"
+        "tests",
+        "django unittest",
+        "django-node tests"
     ],
     "activationEvents": [
         "onCommand:python.djangoTestRunner.runMethodTests",
