@@ -4,7 +4,6 @@ import { WorkspaceConfiguration } from "vscode";
 const METHOD_REGEX = /(\s*)def\s+(test_\w+)\s?\(/i;
 const CLASS_REGEX = /(\s*)class\s+(\w+)/i;
 
-
 let terminal: vscode.Terminal;
 
 class TestRunner {
@@ -13,8 +12,7 @@ class TestRunner {
   filePath: string = "";
   lastRanTestPath: string = "";
 
-  constructor() {
-  }
+  constructor() {}
 
   toString(): string {
     if (this.isDjangoNose()) {
@@ -38,6 +36,16 @@ class TestRunner {
     return this.filePath;
   }
 
+  getRootPackage(): string {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return "";
+    }
+    const config = vscode.workspace.getConfiguration("", editor.document.uri);
+
+    return config.get("python.djangoTestRunner.rootPackageName", "");
+  }
+
   getAppPath(): string {
     return "";
   }
@@ -56,32 +64,12 @@ class TestRunner {
     }
     this.filePath = currentDocument.fileName
       .replace(currentWorkspacePath.uri.fsPath, "")
+      .replace(`${this.getRootPackage()}\.?`, "")
       .replace(".py", "")
       .replace(/\//g, ".")
       .replace(/\\/g, ".")
       .replace(/\\\\/g, ".")
       .substring(1);
-
-      this.stripRootPackageIfSpecified();
-  }
-
-  stripRootPackageIfSpecified() {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) { return this.filePath; }
-    const config = vscode.workspace.getConfiguration("", editor.document.uri);
-
-    let rootPackage: string = config.get("python.djangoTestRunner.rootPackageName") || '';
-    if (!rootPackage) { return this.filePath; }
-
-    // ensure that rootpath ends with a period as the period need to be stripped as well
-    if (!rootPackage.endsWith('.')) { rootPackage += '.'; }
-
-    let idxOfRootModuleSubstrStart = this.filePath.indexOf(rootPackage);
-    if (idxOfRootModuleSubstrStart < 0) { return this.filePath; }
-
-    // assign this.filepath = everything after the end of rootModule
-    let idxOfRootModuleSubstrEnd = idxOfRootModuleSubstrStart + rootPackage.length;
-    this.filePath = this.filePath.substring(idxOfRootModuleSubstrEnd);
   }
 
   updateClassAndMethodPath(): void {
@@ -136,7 +124,9 @@ class TestRunner {
 
   isDjangoNose(): boolean {
     const editor = vscode.window.activeTextEditor;
-    if (!editor) { return false; }
+    if (!editor) {
+      return false;
+    }
     const config = vscode.workspace.getConfiguration("", editor.document.uri);
     return config.get("python.djangoTestRunner.djangoNose") === true;
   }
@@ -158,7 +148,7 @@ class TestRunner {
         configuration.get("python.djangoTestRunner.manageFilePath"),
         "test",
         configuration.get("python.djangoTestRunner.flags"),
-        testPath
+        testPath,
       ];
       terminal.sendText(cmds.join(" "));
     }
@@ -221,10 +211,13 @@ export function activate(context: vscode.ExtensionContext) {
         tester.runFileTests();
       }
     ),
-    vscode.commands.registerCommand("python.djangoTestRunner.runAppTests", () => {
-      tester.runAppTests();
-    })
+    vscode.commands.registerCommand(
+      "python.djangoTestRunner.runAppTests",
+      () => {
+        tester.runAppTests();
+      }
+    )
   );
 }
 
-export function deactivate() { }
+export function deactivate() {}

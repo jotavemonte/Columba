@@ -4,6 +4,12 @@ All notable changes to the Columba extension will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.0]
+
+### Added
+
+- Support for cropping out root directory from test command path through the `python.djangoTestRunner.rootPackageName` option
+
 ## [4.0.0]
 
 ### Added
