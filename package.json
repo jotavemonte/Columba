@@ -2,7 +2,7 @@
     "name": "columba",
     "displayName": "Columba",
     "description": "Django and Django-nose test shorthands in VSCode",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "publisher": "jotavemonte",
     "repository": "https://github.com/jotavemonte/VSCode-Django-Test-Runner",
     "icon": "images/columba.png",
@@ -71,6 +71,17 @@
                         "type": "string",
                         "default": "./manage.py",
                         "description": "Django manage.py execution file path",
+                        "scope": "resource"
+                    }
+                }
+            },
+            {
+                "title": "Root Django Project Package Name",
+                "properties": {
+                    "python.djangoTestRunner.rootPackageName": {
+                        "type": "string",
+                        "default": "",
+                        "description": "The root of your django project, where manage.py is located. This is used to strip the root package from test paths.",
                         "scope": "resource"
                     }
                 }
