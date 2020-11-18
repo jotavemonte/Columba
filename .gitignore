@@ -4,3 +4,4 @@ out/
 tsconfig.json
 tslintjson
 .vscode-test
+*.vsix
