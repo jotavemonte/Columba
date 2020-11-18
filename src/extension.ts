@@ -64,12 +64,12 @@ class TestRunner {
     }
     this.filePath = currentDocument.fileName
       .replace(currentWorkspacePath.uri.fsPath, "")
-      .replace(`${this.getRootPackage()}\.?`, "")
+      .replace(/^\//, "")
       .replace(".py", "")
       .replace(/\//g, ".")
       .replace(/\\/g, ".")
       .replace(/\\\\/g, ".")
-      .substring(1);
+      .replace(new RegExp(`^${this.getRootPackage()}\\.?`), "");
   }
 
   updateClassAndMethodPath(): void {
