@@ -1,6 +1,6 @@
 # [Columba](https://marketplace.visualstudio.com/items?itemName=jotavemonte.Columba)
 
-This project is a fork of the [Django-Test-Runner](https://github.com/Pachwenko/VSCode-Django-Test-Runner) and aims to be an user friendly django test runner.
+Django test suite runner
 
 ## Features
 
